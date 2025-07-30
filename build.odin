@@ -49,7 +49,7 @@ main :: proc() {
                 append(&commands,cer_dir,fmt.tprintf("-out:%s/game_debug.exe",out_dir))
             }
             when ODIN_OS == .Linux {
-	            append(&commands,cer_dir,fmt.tprintf("-out:%s/game_debug.exe",out_dir))
+	            append(&commands,cer_dir,fmt.tprintf("-out:%s/game_debug",out_dir))
             }
             append(&commands,"-debug")
             run_program(desc={working_dir=starting_dir,command=commands[:]},name=fmt.tprint(comp_flag))
@@ -61,7 +61,7 @@ main :: proc() {
                 append(&commands,cer_dir,fmt.tprintf("-out:%s/game_release.exe",out_dir),"-no-bounds-check","-o:speed","-subsystem:windows")
             }
             when ODIN_OS == .Linux {
-                append(&commands,cer_dir,fmt.tprintf("-out:%s/game_release.exe",out_dir),"-no-bounds-check","-o:speed","-subsystem:windows")
+                append(&commands,cer_dir,fmt.tprintf("-out:%s/game_release",out_dir),"-no-bounds-check","-o:speed")
             }
             run_program(desc={working_dir=starting_dir,command=commands[:]},name=fmt.tprint(comp_flag))
         case .web_release:
