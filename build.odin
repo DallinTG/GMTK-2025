@@ -45,14 +45,24 @@ main :: proc() {
         case .descktop_debug:
             out_dir="build/debug"
             cer_dir="source/main"
-            append(&commands,cer_dir,fmt.tprintf("-out:%s/game_debug.exe",out_dir))
+            when ODIN_OS == .Windows {
+                append(&commands,cer_dir,fmt.tprintf("-out:%s/game_debug.exe",out_dir))
+            }
+            when ODIN_OS == .Linux {
+	            append(&commands,cer_dir,fmt.tprintf("-out:%s/game_debug.exe",out_dir))
+            }
             append(&commands,"-debug")
             run_program(desc={working_dir=starting_dir,command=commands[:]},name=fmt.tprint(comp_flag))
 
         case .descktop_release:
             out_dir="build/release"
             cer_dir="source/main"
-            append(&commands,cer_dir,fmt.tprintf("-out:%s/game_release.exe",out_dir),"-no-bounds-check","-o:speed","-subsystem:windows")
+            when ODIN_OS == .Windows {
+                append(&commands,cer_dir,fmt.tprintf("-out:%s/game_release.exe",out_dir),"-no-bounds-check","-o:speed","-subsystem:windows")
+            }
+            when ODIN_OS == .Linux {
+                append(&commands,cer_dir,fmt.tprintf("-out:%s/game_release.exe",out_dir),"-no-bounds-check","-o:speed","-subsystem:windows")
+            }
             run_program(desc={working_dir=starting_dir,command=commands[:]},name=fmt.tprint(comp_flag))
         case .web_release:
         case .web_debug:
