@@ -51,6 +51,7 @@ Game_Memory :: struct {
 	run: bool,
 	using as:assets,
 	using st:state,
+	h_score:i32,
 	ui_st:ui_state,
 	time:time_stuff,
 	defalt:defalt,
@@ -71,7 +72,7 @@ game_update :: proc() {
 @(export)
 game_init_window :: proc() {
 	rl.SetConfigFlags({.WINDOW_RESIZABLE,})
-	rl.InitWindow(720, 720, "Game_template")
+	rl.InitWindow(720, 720, "Orbital")
 
 	rl.SetWindowPosition(200, 200)
 	rl.SetTargetFPS(0)

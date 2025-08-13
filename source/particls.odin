@@ -25,6 +25,7 @@ particle :: struct{
     tint:[4]f32,
     tint_shift:[4]f32,
     callback:proc(particle:^particle),
+    destroy_callback:proc(particle:^particle),
 }
 max_particles:int:10000
 all_particle_data::struct{
@@ -39,6 +40,9 @@ add_particle::proc(particle:particle){
     }
 }
 remove_particle::proc(p_index:int){
+    if g.st.particle.data[p_index].destroy_callback !=nil{
+        g.st.particle.data[p_index].destroy_callback(&g.st.particle.data[p_index])
+    }
     g.st.particle.data[p_index] = g.st.particle.data[g.st.particle.p_count-1]
     if g.st.particle.p_count>0{
         g.st.particle.p_count -=1
@@ -49,7 +53,7 @@ calc_particles::proc(){
     if g.time.is_60h_this_frame {
         if g.st.particle.p_count > 0{
             for i in 0..<g.st.particle.p_count {
-                g.st.particle.data[i].life -= g.time.dt_60h
+                g.st.particle.data[i].life -= frame_langth
                 if g.st.particle.data[i].callback != nil{
                     g.st.particle.data[i].callback(&g.st.particle.data[i])
                 }else{
@@ -63,12 +67,14 @@ calc_particles::proc(){
     }
 }
 bace_calc_particle::proc(particle:^particle){
-    particle.velocity += (particle.force * g.time.dt_60h)
-    particle.pos += (particle.velocity * g.time.dt_60h)
-    particle.rot += (particle.rot_shift * g.time.dt_60h)
-    particle.w_h += (particle.w_h_shift * g.time.dt_60h)
+    particle.velocity += (particle.force * frame_langth)
+    particle.pos += (particle.velocity * frame_langth)
+    particle.rot += (particle.rot_shift * frame_langth)
+    particle.w_h += (particle.w_h_shift * frame_langth)
 }
+
 draw_particles::proc(){
+
     if g.st.particle.p_count > 0{
         for i in 0..<g.st.particle.p_count {
             part := &g.st.particle.data[i]

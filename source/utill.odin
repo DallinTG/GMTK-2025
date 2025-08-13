@@ -18,6 +18,7 @@ window_info::struct{
     h:i32,
 }
 
+frame_langth::0.016666  
 maintain_timers::proc(){
     
     g.time.dt = rl.GetFrameTime()
@@ -25,8 +26,10 @@ maintain_timers::proc(){
     g.time.frame_count+=1
     if g.time.is_60h_this_frame == true{
         g.time.is_60h_this_frame = false
-        g.time.dt_60h -=0.016666    }
-    if g.time.dt_60h >0.016666{
+        // g.time.dt_60h =0.0  
+        g.time.dt_60h -=frame_langth   
+    }
+    if g.time.dt_60h >frame_langth{
         g.time.is_60h_this_frame = true
         g.time.frame_count_60h+=1
     }
@@ -79,3 +82,33 @@ maintain_window_info::proc(){
     g.window_info.w=rl.GetScreenWidth()
 
 }
+
+get_distance::proc(pos_1,pos_2:[2]f32)->(dist:f32){
+    dist=math.sqrt((pos_1.x-pos_2.x)*(pos_1.x-pos_2.x)+(pos_1.y-pos_2.y)*(pos_1.y-pos_2.y))
+    return
+}
+animate_to_target_v2 :: proc(value: ^[2]f32, target: [2]f32, delta_t: f32, rate :f32= 15.0, good_enough:f32= 0.001)
+{
+	animate_to_target_f32(&value.x, target.x, delta_t, rate, good_enough)
+	animate_to_target_f32(&value.y, target.y, delta_t, rate, good_enough)
+}
+
+animate_to_target_f32 :: proc(value: ^f32, target: f32, delta_t: f32, rate:f32= 15.0, good_enough:f32= 0.001) -> bool
+{
+	value^ += (target - value^) * (1.0 - math.pow_f32(2.0, -rate * delta_t));
+	if almost_equals(value^, target, good_enough)
+	{
+		value^ = target;
+		return true; // reached
+	}
+	return false;
+}
+
+almost_equals :: proc(a: f32, b: f32, epsilon: f32 = 0.001) -> bool
+{
+	return abs(a - b) <= epsilon;
+}
+// get_distance::proc(pos1,pos2:[2]f32)->(dist:f32){
+//     dist=math.sqrt((pos1.x-pos2.x)*(pos1.x-pos2.x)+(pos1.y-pos2.y)*(pos1.y-pos2.y))
+//     return
+// }

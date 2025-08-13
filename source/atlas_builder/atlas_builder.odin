@@ -35,7 +35,7 @@ import stbtt "vendor:stb/truetype"
 // ---------------------
 
 // Size of atlas in NxN pixels. Note: The outputted atlas PNG is cropped to the visible pixels.
-ATLAS_SIZE :: 1080
+ATLAS_SIZE :: 7680/4*3
 
 // Path to output final atlas PNG to
 ATLAS_PNG_OUTPUT_PATH :: "../../assets/atlases/atlas.png"
@@ -345,6 +345,7 @@ load_ase_texture_data :: proc(filename: string, textures: ^[dynamic]Texture_Data
 	skip_writing_main_anim := false
 	indexed := doc.header.color_depth == .Indexed
 	palette: ase.Palette_Chunk
+	
 	if indexed {
 		for f in doc.frames {
 			for c in f.chunks {

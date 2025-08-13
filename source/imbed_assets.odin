@@ -20,9 +20,11 @@ shader_names :: enum {
 sound_names :: enum {
 	none,
 	eat,
+	explosion,
 	no_1,
 	no_2,
 	penswipe,
+	pickupcoin,
 	place,
 	small_thud,
 	s_click,
@@ -32,15 +34,18 @@ sound_names :: enum {
 	s_thud,
 	s_ts,
 	s_woo,
+	thruster_1,
+	thruster_2,
 	wa_wa,
 	woosh,
 }
 
 music_names :: enum {
 	none,
-	cloud_dancer,
-	guzheng_city,
-	space_jazz,
+	corruption,
+	gothamlicious,
+	i_can_feel_it_coming,
+	space_fighter_loop,
 }
 
 	all_fonts := [font_names]asset {
@@ -56,9 +61,11 @@ music_names :: enum {
 	all_sounds := [sound_names]asset {
 		.none = {},
 		.eat = { path = "sounds/eat.wav",  data = #load("../assets/sounds/eat.wav"), },
+		.explosion = { path = "sounds/explosion.wav",  data = #load("../assets/sounds/explosion.wav"), },
 		.no_1 = { path = "sounds/no_1.wav",  data = #load("../assets/sounds/no_1.wav"), },
 		.no_2 = { path = "sounds/no_2.wav",  data = #load("../assets/sounds/no_2.wav"), },
 		.penswipe = { path = "sounds/penswipe.wav",  data = #load("../assets/sounds/penswipe.wav"), },
+		.pickupcoin = { path = "sounds/pickupCoin.wav",  data = #load("../assets/sounds/pickupCoin.wav"), },
 		.place = { path = "sounds/place.wav",  data = #load("../assets/sounds/place.wav"), },
 		.small_thud = { path = "sounds/small_thud.wav",  data = #load("../assets/sounds/small_thud.wav"), },
 		.s_click = { path = "sounds/S_Click.wav",  data = #load("../assets/sounds/S_Click.wav"), },
@@ -68,14 +75,17 @@ music_names :: enum {
 		.s_thud = { path = "sounds/S_Thud.wav",  data = #load("../assets/sounds/S_Thud.wav"), },
 		.s_ts = { path = "sounds/S_TS.wav",  data = #load("../assets/sounds/S_TS.wav"), },
 		.s_woo = { path = "sounds/S_woo.wav",  data = #load("../assets/sounds/S_woo.wav"), },
+		.thruster_1 = { path = "sounds/thruster_1.wav",  data = #load("../assets/sounds/thruster_1.wav"), },
+		.thruster_2 = { path = "sounds/thruster_2.wav",  data = #load("../assets/sounds/thruster_2.wav"), },
 		.wa_wa = { path = "sounds/wa_wa.wav",  data = #load("../assets/sounds/wa_wa.wav"), },
 		.woosh = { path = "sounds/woosh.wav",  data = #load("../assets/sounds/woosh.wav"), },
 	}
 
 	all_music := [music_names]asset {
 		.none = {},
-		.cloud_dancer = { path = "music/Cloud_Dancer.mp3",  data = #load("../assets/music/Cloud_Dancer.mp3"), },
-		.guzheng_city = { path = "music/Guzheng_City.mp3",  data = #load("../assets/music/Guzheng_City.mp3"), },
-		.space_jazz = { path = "music/Space_Jazz.mp3",  data = #load("../assets/music/Space_Jazz.mp3"), },
+		.corruption = { path = "music/Corruption.mp3",  data = #load("../assets/music/Corruption.mp3"), },
+		.gothamlicious = { path = "music/Gothamlicious.mp3",  data = #load("../assets/music/Gothamlicious.mp3"), },
+		.i_can_feel_it_coming = { path = "music/I_Can_Feel_it_Coming.mp3",  data = #load("../assets/music/I_Can_Feel_it_Coming.mp3"), },
+		.space_fighter_loop = { path = "music/Space_Fighter_Loop.mp3",  data = #load("../assets/music/Space_Fighter_Loop.mp3"), },
 	}
 

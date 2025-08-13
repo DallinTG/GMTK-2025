@@ -16,7 +16,7 @@ comp_flags::enum{
     web_debug,
 }
 // comp_flag_str:: #config(comp_flag, "web_debug")
-comp_flag_str:: #config(comp_flag, "debug")
+comp_flag_str:: #config(comp_flag, "descktop_release")
 do_asset_bulder:: #config(do_asset_bulder,true)
 do_atlas_bulder:: #config(do_atlas_bulder,true)
 run_or_build::#config(run_or_build, "run")
@@ -45,6 +45,7 @@ main :: proc() {
         case .descktop_debug:
             out_dir="build/debug"
             cer_dir="source/main"
+            fmt.print(ODIN_OS,"= os\n")
             when ODIN_OS == .Windows {
                 append(&commands,cer_dir,fmt.tprintf("-out:%s/game_debug.exe",out_dir))
             }

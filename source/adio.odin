@@ -99,7 +99,7 @@ update_song::proc(){
     if !rl.IsMusicStreamPlaying(g.as.cur_music){
         g.as.cur_music=rand.choice(g.as.music[:])
         rl.PlayMusicStream(g.as.cur_music)      
-        rl.SetMusicVolume(g.as.cur_music , .20)                      // Start music playing
+        rl.SetMusicVolume(g.as.cur_music , .10)                      // Start music playing
     }
     rl.UpdateMusicStream(g.as.cur_music)
 }

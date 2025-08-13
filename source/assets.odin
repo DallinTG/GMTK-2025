@@ -16,7 +16,7 @@ assets::struct{
     atlas:rl.Texture2D,
     shaders:shaders,
     animations:animations,
-    music:[3]rl.Music,
+    music:[4]rl.Music,
     cur_music:rl.Music,
 
 }
@@ -34,9 +34,10 @@ init_sounds::proc(){
             // }
         }
     }
-    g.as.music[2] = rl.LoadMusicStreamFromMemory(".mp3",cast(rawptr)&all_music[.guzheng_city].data[0],cast(i32)(len(all_music[.guzheng_city].data)))
-    g.as.music[1] = rl.LoadMusicStreamFromMemory(".mp3",cast(rawptr)&all_music[.cloud_dancer].data[0],cast(i32)(len(all_music[.cloud_dancer].data)))
-    g.as.music[0] = rl.LoadMusicStreamFromMemory(".mp3",cast(rawptr)&all_music[.space_jazz].data[0],cast(i32)(len(all_music[.space_jazz].data)))
+    g.as.music[3] = rl.LoadMusicStreamFromMemory(".mp3",cast(rawptr)&all_music[.corruption].data[0],cast(i32)(len(all_music[.corruption].data)))
+    g.as.music[2] = rl.LoadMusicStreamFromMemory(".mp3",cast(rawptr)&all_music[.gothamlicious].data[0],cast(i32)(len(all_music[.gothamlicious].data)))
+    g.as.music[1] = rl.LoadMusicStreamFromMemory(".mp3",cast(rawptr)&all_music[.i_can_feel_it_coming].data[0],cast(i32)(len(all_music[.i_can_feel_it_coming].data)))
+    g.as.music[0] = rl.LoadMusicStreamFromMemory(".mp3",cast(rawptr)&all_music[.space_fighter_loop].data[0],cast(i32)(len(all_music[.space_fighter_loop].data)))
 }
 
 init_shaders::proc(){
